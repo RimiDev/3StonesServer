@@ -9,10 +9,11 @@ public class Game
 	private int stoneServer;
 	private int lastPlayX;
 	private int lastPlayY;
+	private GameBoard gameBoard;
 	
 	public Game(GameBoard gameBoard)
 	{
-		
+		this.gameBoard = gameBoard;
 	}
 
 	public void play(Point point)
@@ -25,11 +26,22 @@ public class Game
 		
 	}
 	
-	public List<Tile> getNeighbouringTiles()
+	public List<Point> getAvailableTiles()
 	{
-		List<Tile> tiles = new ArrayList<Tile>();
+		List<Point> availableTiles = new ArrayList<>();
+		for(int i = 0; i < gameBoard.getBoard().length; i++)
+		{
+			for(int j = 0; j < gameBoard.getBoard()[0].length; j++)
+			{
+				if(i == lastPlayX || j == lastPlayY)
+				{
+					if(gameBoard.getBoard()[i][j] == Tile.EMPTY)
+						availableTiles.add(new Point(i,j));
+				}
+			}
+		}
 		
-		return tiles;
+		return availableTiles;
 	}
 	
 	public boolean checkThreeInARow()
