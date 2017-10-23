@@ -61,36 +61,18 @@ public class GameBoard
 		return board;
 	}
 	
-	public void setTile(int x, int y, Tile tile)
+	public int setTile(int x, int y, Tile tile)
 	{
-		//TODO validation
-	
 		board[x][y] = tile;
+		
+		return checkThreeInARow(x, y, tile);
 	}
-	
-	public void setTile(Point point, Tile tile)
-	{
-		setTile(point.getX(), point.getY(), tile);
-	}
-	
 	public boolean isEmpty(int x, int y)
 	{
-		//TODO validation
-		
 		return board[x][y] == Tile.EMPTY;
 	}
 	
-	public boolean isEmpty(Point point)
-	{
-		return isEmpty(point.getX(), point.getY());
-	}
-	
-	public Tile getTile(int x, int y)
-	{
-		return board[x][y];
-	}
-	
-	public int checkThreeInARow(int x, int y, Tile tile)
+	private int checkThreeInARow(int x, int y, Tile tile)
 	{
 		int points = 0;
 		

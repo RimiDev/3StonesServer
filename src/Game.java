@@ -10,20 +10,30 @@ public class Game
 	private int lastPlayX;
 	private int lastPlayY;
 	private GameBoard gameBoard;
+	private boolean whiteTurn;
 	
 	public Game(GameBoard gameBoard)
 	{
 		this.gameBoard = gameBoard;
-	}
-
-	public void play(Point point)
-	{
-		
+		whiteTurn = true;
+		scoreClient = 0;
+		scoreServer = 0;
+		stoneClient = 15;
+		stoneServer = 15;
+		lastPlayX = -1;
+		lastPlayY = -1;
 	}
 	
 	public void play(int x, int y)
 	{
-		
+		if(whiteTurn)
+		{
+			scoreClient += gameBoard.setTile(x, y, Tile.WHITE);
+		}
+		else
+		{
+			scoreServer += gameBoard.setTile(x, y, Tile.BLACK);
+		}
 	}
 	
 	public List<Point> getAvailableTiles()
@@ -44,24 +54,12 @@ public class Game
 		return availableTiles;
 	}
 	
-	public boolean checkThreeInARow()
-	{
-		return false;
-	}
-	
 	public boolean checkGameEnd()
 	{
+		if(stoneClient == 0 && stoneServer == 0)
+			return true;
+		
 		return false;
-	}
-	
-	public void incrementServerScore()
-	{
-		
-	}
-	
-	public void incrementClientScore()
-	{
-		
 	}
 	
 	public int getScoreClient()
