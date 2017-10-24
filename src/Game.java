@@ -32,7 +32,7 @@ public class Game
 		}
 		else
 		{
-			scoreServer += gameBoard.setTile(x, y, Tile.BLACK);
+			//scoreServer += gameBoard.setTile(x, y, Tile.BLACK);
 		}
 	}
 	
